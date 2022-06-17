@@ -1,0 +1,355 @@
+{
+    "poreid-supported-smartcards": [      
+        {
+            "atr": "3BFF9600008131FE4380318065B085040120120FFF829000D0",
+            "properties": {
+                "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3BFF9600008131804380318065B0850300EF120FFF82900067",
+            "properties": {
+                "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3B7D95000080318065B08311C0A98300",
+            "properties": {
+                "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3B7D95000080318065B08311C0A983009000",
+            "properties": {
+                "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3B7D95000080318065B0831100C88300",
+            "properties": {
+                "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3B7D95000080318065B0831100C883009000",
+            "properties": {
+                "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3B650000D000540131",
+            "properties": {
+                "implementing-class": "org.poreid.cc.ias.IASCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3B650000D000540132",
+            "properties": {
+                "implementing-class": "org.poreid.cc.ias.IASCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3B959540FFD000540131",
+            "properties": {
+                "implementing-class": "org.poreid.cc.ias.IASCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        },
+        {
+            "atr": "3B959540FFD000540132",
+            "properties": {
+                "implementing-class": "org.poreid.cc.ias.IASCard",
+                "cache-enabled": "true",
+                "validity": "5"
+            }
+        }
+    ],    
+    "supported-smartcard-readers": [        
+        {
+            "unique-id": "ACR83 PINeasy",
+            "alias": [
+                "ACS ACR83U"
+            ],
+            "properties": {
+                "implementing-class": "org.poreid.pinpad.AcsACR83u",
+                "supported-oses": [
+                    {
+                        "os-name": "windows",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "linux",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "mac",
+                        "supports": {
+                            "verify": "false",
+                            "modify": "false",
+                            "inject": "true"
+                        }
+                    }
+                ],               
+                "supported-smartcards": [                   
+                    {
+                        "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "false"
+                        }
+                    },
+                    {
+                        "implementing-class": "org.poreid.cc.ias.IASCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "false"
+                        }
+                    }
+                ]                
+            }
+        },
+        {
+            "unique-id": "IDBridgeCT700",
+            "alias": [
+                "Gemalto GemPC Pinpad USB Smart Card Read",
+                "Gemalto USB GemPCPinpad SmartCard Reader",
+                "Gemplus GemPC Pinpad",
+                "Gemalto Ezio Shield"
+            ],
+            "properties": {
+                "implementing-class": "org.poreid.pinpad.GemaltoIDBridgeCT700",
+                "supported-oses": [                    
+                    {
+                        "os-name": "windows",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "linux",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "mac",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    }
+                ],            
+                "supported-smartcards": [                   
+                    {
+                        "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "true"
+                        }
+                    },
+                    {
+                        "implementing-class": "org.poreid.cc.ias.IASCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "true"
+                        }
+                    }                    
+                ]
+            }
+        },       
+        {
+            "unique-id": "XIRING MyLeo",
+            "alias": [
+                "XIRING MyLeo (123456789)",
+                "XIRING USB Smart Card Reader"
+            ],
+            "properties": {
+                "implementing-class": "org.poreid.pinpad.XiringMyleo",
+                "supported-oses": [                    
+                    {
+                        "os-name": "windows",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "false"
+                        }
+                    },
+                    {
+                        "os-name": "linux",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "mac",
+                        "supports": {
+                            "verify": "false",
+                            "modify": "false",
+                            "inject": "false"
+                        }
+                    }
+                ],           
+                "supported-smartcards": [                    
+                    {
+                        "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "true"
+                        }
+                    },
+                    {
+                        "implementing-class": "org.poreid.cc.ias.IASCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "false"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "unique-id": "Bit4id miniLector",
+            "alias": [
+                "Bit4id miniLector [miniLector-EVO]"
+            ],
+            "properties": {
+                "implementing-class": "org.poreid.pinpad.Generic",
+                "supported-oses": [                    
+                    {
+                        "os-name": "windows",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "linux",
+                        "supports": {
+                            "verify": "false",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "mac",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    }
+                ],            
+                "supported-smartcards": [                    
+                    {
+                        "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "true"
+                        }
+                    },
+                    {
+                        "implementing-class": "org.poreid.cc.ias.IASCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "true"
+                        }
+                    }
+                ]
+            }            
+        },
+        {
+            "unique-id": "generic reader",
+            "alias": [
+                "generic reader"
+            ],
+            "properties": {
+                "implementing-class": "org.poreid.pinpad.Generic",
+                "supported-oses": [                    
+                    {
+                        "os-name": "windows",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "linux",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    },
+                    {
+                        "os-name": "mac",
+                        "supports": {
+                            "verify": "true",
+                            "modify": "true",
+                            "inject": "true"
+                        }
+                    }
+                ],            
+                "supported-smartcards": [                    
+                    {
+                        "implementing-class": "org.poreid.cc.gemsafe.GemsafeCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "true"
+                        }
+                    },
+                    {
+                        "implementing-class": "org.poreid.cc.ias.IASCard",
+                        "properties": {
+                            "verify": "true",
+                            "modify": "true"
+                        }
+                    }
+                ]
+            }            
+        }
+    ],
+    "default-locale": {
+        "language": "pt",
+        "country": "PT"
+    },
+    "allow-external-pin-caching": "false",
+    "timed-interaction": {
+        "enabled": "true",
+        "period": "120"
+    },
+    "cache-threshold": "5"   
+}
