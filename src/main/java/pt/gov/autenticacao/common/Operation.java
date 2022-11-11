@@ -32,7 +32,7 @@ import pt.gov.autenticacao.common.diagnostic.Diagnostic;
 import pt.gov.autenticacao.configuracao.ConfigurationBuilder;
 import pt.gov.autenticacao.dialogs.NotifyOption;
 import pt.gov.autenticacao.dialogs.hardware.MissingHardwareDialog;
-import pt.gov.autenticacao.util.Base64;
+import java.util.Base64;
 import pt.gov.autenticacao.util.der.AuthGovCertificateExtensions;
 import pt.gov.autenticacao.util.der.StapledSingleOCSPResponse;
 

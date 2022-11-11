@@ -34,7 +34,7 @@ import pt.gov.autenticacao.common.Parameter;
 import pt.gov.autenticacao.common.RequiredParameterException;
 import pt.gov.autenticacao.common.Response;
 import pt.gov.autenticacao.common.diagnostic.Diagnostic;
-import pt.gov.autenticacao.util.Base64;
+import java.util.Base64;
 import pt.gov.autenticacao.util.der.AuthGovCertificateExtensions;
 
 /**
@@ -56,7 +56,7 @@ public class Signature extends Operation {
         class Name {};
         String enclosingMethod = Name.class.getEnclosingMethod().getName();
         
-        container = new SignatureContainer();
+        container = new SignatureContainer(cc);
         container.setToken(authToken);        
         container.setPublicKey(authGovCert.getPublicKey());
         container.setCryptoHashBytes(cryptoHash);
@@ -86,13 +86,8 @@ public class Signature extends Operation {
         }
         
         try {           
-            Security.addProvider(new POReIDProvider());
-            POReIDKeyStoreParameter ksParam = new POReIDKeyStoreParameter();
-            ksParam.setCard(cc);
-
-            KeyStore ks = KeyStore.getInstance(POReIDConfig.POREID);
-            ks.load(ksParam);                        
-            container.doSignature((PrivateKey) ks.getKey(POReIDConfig.ASSINATURA, null));
+                                   
+            container.doSignature();
 
         } catch (SignatureException ex) {
             Throwable th = ex.getCause();
@@ -105,9 +100,7 @@ public class Signature extends Operation {
             } else {                                
                 report = new ErrorReportImpl(authGovCert.getPublicKey(), ErrorType.ERRO_GENERICO, Diagnostic.getCCLogInfo(cc, ex, enclosingMethod));
             }
-        } catch (ContainerException | KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException | UnrecoverableKeyException | InvalidKeyException ex) {
-            report = new ErrorReportImpl(authGovCert.getPublicKey(), ErrorType.ERRO_GENERICO, Diagnostic.getCCLogInfo(cc, ex, enclosingMethod));
-        }
+        } 
     }
     
     
@@ -122,7 +115,7 @@ public class Signature extends Operation {
         
         try {
             hashAlgorithm = getParameter(Parameter.CRYPTOGRAPHIC_HASH_ALGORITHM, true);
-            cryptoHash = Base64.getDecoder().decode(getParameter(Parameter.CRYPTOGRAPHIC_HASH, true));            
+            cryptoHash = Base64.getDecoder().decode(getParameter(Parameter.CRYPTOGRAPHIC_HASH, true));
             int usageBits = AuthGovCertificateExtensions.signature;
             Agente.HELP.setNewHelpPageLocation(getParameter(Parameter.HELP_PAGE_LOCATION, ""));
             if (validateSecurityParameters(usageBits, cryptoHash, hashAlgorithm.getBytes(), getParameter(Parameter.SOCSP_STAPLE, "").getBytes(), 

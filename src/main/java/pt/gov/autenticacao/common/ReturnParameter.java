@@ -18,6 +18,7 @@ public enum ReturnParameter {
     SCAP("scap"),    
     // COMUNS
     CERTIFICADO("certificado"),
+    CERTIFICADOEC("certificadoSubEC"),
     ASSINATURA("assinatura"),
     NONCE("nonce"),
     KEY("key"),

@@ -32,7 +32,7 @@ import org.poreid.dialogs.pindialogs.PinTimeoutException;
 import org.poreid.dialogs.selectcard.CanceledSelectionException;
 import pt.gov.autenticacao.Service;
 import pt.gov.autenticacao.configuracao.ConfigurationBuilder;
-import pt.gov.autenticacao.util.Base64;
+import java.util.Base64;
 
 /**
  *

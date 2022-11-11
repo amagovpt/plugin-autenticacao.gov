@@ -41,7 +41,7 @@ public class POReIDProvider extends Provider {
     public POReIDProvider() {
         super(NAME, VERSION, INFO);
         
-          AccessController.doPrivileged(new PrivilegedAction<Void>() {
+        /*  AccessController.doPrivileged(new PrivilegedAction<Void>() {
             @Override
             public Void run() {
                 if (!(System.getSecurityManager() instanceof POReIDSecurityManager)) {
@@ -49,7 +49,7 @@ public class POReIDProvider extends Provider {
                 }
                 return null;
             }
-        });
+        });*/
         
         final Map<String, String> signatureServiceAttributes = new HashMap<>();
         signatureServiceAttributes.put(POReIDConfig.SUPPORTED_KEY_CLASSES,POReIDPrivateKey.class.getName());

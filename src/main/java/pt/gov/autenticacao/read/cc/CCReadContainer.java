@@ -9,7 +9,7 @@ import pt.gov.autenticacao.common.ContainerException;
 import pt.gov.autenticacao.common.Input;
 import pt.gov.autenticacao.common.Inputs;
 import pt.gov.autenticacao.common.ReturnParameter;
-import pt.gov.autenticacao.util.Base64;
+import java.util.Base64;
 
 /**
  *

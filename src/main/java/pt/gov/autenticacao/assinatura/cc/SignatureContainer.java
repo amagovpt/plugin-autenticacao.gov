@@ -4,6 +4,13 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.SignatureException;
+import org.poreid.POReIDException;
+import org.poreid.PkAlias;
+import org.poreid.RSAPaddingSchemes;
+import org.poreid.cc.CitizenCard;
+import org.poreid.dialogs.pindialogs.PinBlockedException;
+import org.poreid.dialogs.pindialogs.PinEntryCancelledException;
+import org.poreid.dialogs.pindialogs.PinTimeoutException;
 import pt.gov.autenticacao.common.AbstractContainer;
 import pt.gov.autenticacao.common.ContainerException;
 import pt.gov.autenticacao.common.Input;
@@ -19,7 +26,11 @@ public class SignatureContainer extends AbstractContainer {
     private byte[] certificado = null;
     private byte[] cryptoHashBytes = null;
     private String hashAlgorithm;
+    private CitizenCard cc = null;
 
+    public SignatureContainer(CitizenCard cc){
+        this.cc = cc;
+    }
     
     public void setCertificado(byte[] certificado) {
         this.certificado = certificado;
@@ -36,24 +47,13 @@ public class SignatureContainer extends AbstractContainer {
     }
     
     
-    public void doSignature(PrivateKey pk) throws NoSuchAlgorithmException, InvalidKeyException, ContainerException, SignatureException{                
-        String signatureAlgorithm;
+    public void doSignature() throws SignatureException{                
         
-        switch(hashAlgorithm){
-            case "SHA-1":
-                signatureAlgorithm = "SHA1withRSA";
-                break;
-            case "SHA-256":
-                signatureAlgorithm = "SHA256withRSA";
-                break;
-            default:
-                signatureAlgorithm = "FALHA";
+        try {
+           this.signatureBytes =  cc.sign(cryptoHashBytes,null,hashAlgorithm, PkAlias.ASSINATURA, RSAPaddingSchemes.PKCS1);
+        } catch (POReIDException | PinBlockedException | PinEntryCancelledException | PinTimeoutException ex) {
+            throw new SignatureException(ex);
         }
-        
-        java.security.Signature signature = java.security.Signature.getInstance(signatureAlgorithm);
-        signature.initSign(pk);   
-        signature.update(cryptoHashBytes);
-        this.signatureBytes = signature.sign();                       
     }
     
     

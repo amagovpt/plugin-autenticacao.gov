@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import javax.crypto.NoSuchPaddingException;
-import pt.gov.autenticacao.util.Base64;
+import java.util.Base64;
 
 /**
  * 

@@ -143,7 +143,6 @@ public final class GemsafeCard extends CitizenCard {
                 baos.write(hash.length);
                 baos.write(hash, 0, hash.length);
             }
-
             if (!CCConfig.isExternalPinCachePermitted() && !isOTPPinChanging()) {
                 pinCode = null;
             }
@@ -169,7 +168,7 @@ public final class GemsafeCard extends CitizenCard {
             throw new POReIDException(ex);
         }
     }
-
+    
     private void setSecurityEnvironment(Byte algorithm, byte keyReference) throws POReIDException, CardException {
         ResponseAPDU responseApdu;
 

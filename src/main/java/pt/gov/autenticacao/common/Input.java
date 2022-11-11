@@ -1,7 +1,7 @@
 package pt.gov.autenticacao.common;
 
 import org.poreid.json.JSONObject;
-import pt.gov.autenticacao.util.Base64;
+import java.util.Base64;
 
 /**
  *

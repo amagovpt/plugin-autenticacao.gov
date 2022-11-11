@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import org.poreid.common.Util;
 import pt.gov.autenticacao.assinatura.cc.Signature;
+import pt.gov.autenticacao.assinatura.cc.certificados.SignatureChain;
 import pt.gov.autenticacao.common.ErrorReportImpl;
 import pt.gov.autenticacao.common.Parameter;
 import pt.gov.autenticacao.autenticacao.cc.AuthCC;
@@ -34,7 +35,7 @@ public class Service extends NanoHTTPD{
     private final String IS_ALIVE = "/isAlive";
     private final String VERIFY = "/network";
     private final String ORIGIN = "origin";    
-    public static final String VERSION = "2.0.70";    
+    public static final String VERSION = "2.0.72";    
     private final int TIMEOUT = 70; //este é o período (entre o is_alive e qualquer operação com o cartão) durante o qual um UUID é valido, valor original 15.
     private final int usedPort;    
     private final String type;    
@@ -104,6 +105,10 @@ public class Service extends NanoHTTPD{
                              session.parseBody(files);                        
                              responseData = SoftCertAuthenticationFactory.create(new CSSoftCertificatesSelector(), session.getParms(), uuid).doAuthentication().toJSON();
                              break; */
+                            case CCServiceProviders.CC_SIGN_CERTIFICATE:
+                                session.parseBody(files);
+                                responseData = new SignatureChain(session.getParms(), requests).doOperation().toJSON();
+                                break;
                             default:
                                 LOGGER.log(Level.INFO, "método POST não processado uri = {0}; uptime = {1}", new Object[]{session.getUri(), ManagementFactory.getRuntimeMXBean().getUptime()});
                         }

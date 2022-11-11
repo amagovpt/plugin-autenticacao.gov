@@ -1,10 +1,10 @@
 package pt.gov.autenticacao.configuracao;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,7 +20,7 @@ import pt.gov.autenticacao.util.Utilities;
  */
 public class WindowsConfigurationActions implements ConfigurationActions{
     private final static Logger LOGGER = Logger.getLogger(WindowsConfigurationActions.class.getName());
-    String path = System.getProperty("launch4j.exefile", "");
+    private String path = System.getProperty("launch4j.exefile", Paths.get(new File("").getAbsolutePath()).toString());
     private final Path configurationFileLocation = Paths.get(System.getenv("APPDATA"),"plugin Autenticacao.Gov");
     private final String JAVA_BIN = "javaw";
     

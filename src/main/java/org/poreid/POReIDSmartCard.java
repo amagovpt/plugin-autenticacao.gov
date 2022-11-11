@@ -109,11 +109,18 @@ public interface POReIDSmartCard extends SmartCardUIData, AutoCloseable {
     X509Certificate getQualifiedSignatureCertificate() throws CertificateNotFound;
 
     /**
+     * Retorna o certificado de assinatura qualificada e a subEC imediatamente acima
+     * @return lista com o certificado de assinatura qualificada e a subEC imediatamente acima
+     * @throws CertificateChainNotFound Exceção lançada quando não é possivel construir um caminho de certificação para o certificado
+     */
+    List<X509Certificate> getQualifiedSignatureCertificateChain() throws CertificateChainNotFound;
+    
+    /**
      * Retorna o caminho completo entre o certificado de assinatura qualificada e o seu certificado raíz 
      * @return lista de certificados ordenados do certificado de assinatura qualificada para o certificado raíz.
      * @throws CertificateChainNotFound Exceção lançada quando não é possivel construir um caminho de certificação para o certificado
      */
-    List<X509Certificate> getQualifiedSignatureCertificateChain() throws CertificateChainNotFound;
+    List<X509Certificate> getFullyQualifiedSignatureCertificateChain() throws CertificateChainNotFound;
 
     /**
      * Retorna o caminho completo entre o certificado de autenticação e o seu certificado raíz

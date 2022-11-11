@@ -45,6 +45,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -583,7 +584,7 @@ public abstract class POReIDCard implements POReIDSmartCard {
     
     
     @Override
-    public final List<X509Certificate> getQualifiedSignatureCertificateChain() throws CertificateChainNotFound{
+    public final List<X509Certificate> getFullyQualifiedSignatureCertificateChain() throws CertificateChainNotFound{
         try {
             List<X509Certificate> l;
             KeyStore ks = KeyStore.getInstance("JKS");
@@ -591,9 +592,21 @@ public abstract class POReIDCard implements POReIDSmartCard {
                 ks.load(input, null);
             }
             l = (List<X509Certificate>) Util.getCertificateChain(getCertificate(files.QualifiedSignatureSubCACertificate), ks);
-            l.add(0,getQualifiedSignatureCertificate());
             return l;  
         } catch (CertificateNotFound | KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException ex) {
+            throw new CertificateChainNotFound("Não foi possivel obter cadeia de certificados",ex);
+        }
+    }
+    
+    
+    @Override
+    public final List<X509Certificate> getQualifiedSignatureCertificateChain() throws CertificateChainNotFound{
+        try {
+            List<X509Certificate> l = new ArrayList<X509Certificate>();
+            l.add(getQualifiedSignatureCertificate());
+            l.add(getCertificate(files.QualifiedSignatureSubCACertificate));
+            return l;  
+        } catch (CertificateNotFound ex) {
             throw new CertificateChainNotFound("Não foi possivel obter cadeia de certificados",ex);
         }
     }

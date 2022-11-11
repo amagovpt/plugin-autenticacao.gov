@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.poreid.json.JSONObject;
 import org.poreid.json.JSONTokener;
-import pt.gov.autenticacao.util.Base64;
+import java.util.Base64;
 
 /**
  *
